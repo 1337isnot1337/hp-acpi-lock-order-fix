@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-16",
+  "tool_status": "experimental",
+  "real_table_model": "HP Dragonfly 13.5 inch G4",
+  "bios": "V90 01.13.01",
+  "original_table_bytes": 366786,
+  "fixed_table_bytes": 366789,
+  "exact_portable_output_replayed": true,
+  "original_method_roundtrip_exact": true,
+  "full_corrected_disassembly_verified": true,
+  "sequential_cases_total": 49152,
+  "sequential_cases_baseline": 24576,
+  "sequential_cases_corrected": 24576,
+  "state_assertions": 516096,
+  "notifications_verified": 69632,
+  "concurrent_threads": 16,
+  "concurrent_query_evaluations": 6400,
+  "concurrent_direct_gbap_evaluations": 3200,
+  "finite_model_corrected_states": 3786,
+  "hardware_boot_tested": false,
+  "long_term_prevention_established": false,
+  "scope": "Offline test evidence; generated outputs and raw firmware remain private."
+}

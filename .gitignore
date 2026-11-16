@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.venv/
+build/
+output/
+private/
+*.aml
+*.dsl
+*.cpio
+*.log
+manifest.json
