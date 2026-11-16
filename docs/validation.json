@@ -25,5 +25,7 @@
   "public_builder_exact_output_hardware_boot_tested": false,
   "host_specific_charger_disconnect_reconnect_passed": true,
   "host_specific_charging_start_end_tested": false,
-  "host_specific_suspend_resume_tested": false
+  "host_specific_suspend_resume_tested": true,
+  "host_specific_suspend_resume_cycles": 1,
+  "host_specific_suspend_mode": "s2idle"
 }

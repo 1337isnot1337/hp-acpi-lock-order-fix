@@ -65,7 +65,8 @@ The exact public-tool output was built with Python optimization enabled, compare
 | Exact public-builder output hardware boot | **Not yet tested** |
 | Initial battery and AC reporting | **Observed:** battery present at 97%, adapter online; deeper accuracy and transition checks pending |
 | Charger disconnect and reconnect | **Passed:** AC and discharge status updated, then AC returned online |
-| Actual charging start/end and suspend/resume | **Not yet tested** |
+| One short suspend/resume | **Passed:** s2idle entered and exited; power readings responded after resume |
+| Actual charging start/end | **Not yet tested** |
 | Long-term recurrence prevention | **Not established** |
 
 The emulation covers query type, cache flags, cached/reported presence, region availability, notification enablement, large/zero power values and optional external methods present/absent. EC fields are emulated and external consumers are stubs. Unchanged helper methods and both corrected query methods match the real table bytes in that execution harness.
@@ -74,7 +75,7 @@ Earlier host-specific packaging tests additionally ran Linux 7.2.14's early CPIO
 
 ## First physical boot (2026-11-16)
 
-The Dragonfly booted the separate host-specific override. The active DSDT hash matched that artifact and the kernel reported a physical table override. Battery presence and AC online were readable, UPower and logind were active, and no ACPI errors or hung-task warnings appeared in the first minute. The sysfs battery reported 97% and “Not charging”; UPower reported fully charged. A subsequent disconnect changed AC to offline and battery state to discharging; reconnect changed AC back online and restored the prior status. Reads completed and no ACPI errors or stuck tasks appeared. Actual charging start/end and battery accuracy remain untested.
+The Dragonfly booted the separate host-specific override. The active DSDT hash matched that artifact and the kernel reported a physical table override. Battery presence and AC online were readable, UPower and logind were active, and no ACPI errors or hung-task warnings appeared in the first minute. The sysfs battery reported 97% and “Not charging”; UPower reported fully charged. A subsequent disconnect changed AC to offline and battery state to discharging; reconnect changed AC back online and restored the prior status. Reads completed and no ACPI errors or stuck tasks appeared. One short s2idle suspend/resume also completed; battery and adapter reads continued to respond and no ACPI errors or hung-task warnings appeared. Actual charging start/end and battery accuracy remain untested.
 
 The host-specific `_Q08` uses `Local0`; the public builder uses a previously unused `Local1` on this firmware. Their table bytes and hashes differ. The successful boot therefore does not validate the public builder’s exact output on hardware.
 
