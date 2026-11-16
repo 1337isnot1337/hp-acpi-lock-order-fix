@@ -17,7 +17,10 @@
   "concurrent_query_evaluations": 6400,
   "concurrent_direct_gbap_evaluations": 3200,
   "finite_model_corrected_states": 3786,
-  "hardware_boot_tested": false,
   "long_term_prevention_established": false,
-  "scope": "Offline test evidence; generated outputs and raw firmware remain private."
+  "scope": "Offline test evidence; generated outputs and raw firmware remain private.",
+  "host_specific_override_booted": true,
+  "host_specific_table_hash_verified": true,
+  "initial_battery_present_and_ac_online": true,
+  "public_builder_exact_output_hardware_boot_tested": false
 }

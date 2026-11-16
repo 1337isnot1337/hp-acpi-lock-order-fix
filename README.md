@@ -2,7 +2,7 @@
 
 Build a machine-specific Linux ACPI override for the `GBAP` / `ECMX` deadlock found in some HP firmware.
 
-**Experimental. Offline validation has passed; a successful hardware boot and long-term prevention have not yet been verified.** This is a targeted workaround for a recognized firmware pattern. It does not fix every ACPI hang, and it does not flash your BIOS.
+**Experimental. A related host-specific override has booted successfully; the public builder’s exact output and long-term prevention have not yet been verified on hardware.** This is a targeted workaround for a recognized firmware pattern. It does not fix every ACPI hang, and it does not flash your BIOS.
 
 ## The problem
 
@@ -95,7 +95,7 @@ This verifies the active table's hash. It does not establish that battery report
 
 The tool recognizes one `_Q08` / `_Q09` / serialized `GBAP` group in the same namespace, with the specific direct lock/call sequences described above. It supports named enclosing scopes and devices, and resizes AML package lengths including width changes. It rejects conditional declaration containers, ambiguous groups, altered signatures, exhausted local variables and bytecode that does not round-trip exactly.
 
-Successful recognition is not a hardware compatibility guarantee. The real-table build was validated on an HP Dragonfly 13.5 G4, BIOS V90 01.13.01. Other paths and table sizes are covered by generated fixtures; they are not reports of tests on other physical laptops.
+Successful recognition is not a hardware compatibility guarantee. The real-table build was validated offline on an HP Dragonfly 13.5 G4, BIOS V90 01.13.01. A separately built host-specific override using the same lock-order change booted on that machine; it uses a different scratch local from the public builder’s output. Other paths and table sizes are covered by generated fixtures; they are not reports of tests on other physical laptops.
 
 See [the detailed audit](docs/AUDIT.md) for findings, fixes, test coverage and remaining limits. See [contributing](CONTRIBUTING.md) for useful reports without exposing private firmware data.
 

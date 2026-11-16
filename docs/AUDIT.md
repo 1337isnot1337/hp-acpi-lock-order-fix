@@ -61,13 +61,21 @@ The exact public-tool output was built with Python optimization enabled, compare
 | Concurrent corrected query evaluations | 6,400 across 16 threads |
 | Additional concurrent direct `GBAP` calls | 3,200 |
 | Corrected finite-model reachable states | 3,786; no deadlock in the model |
-| Hardware boot into workaround | **Not yet tested** |
-| Real charging, battery reporting and suspend/resume | **Not yet tested** |
+| Host-specific override hardware boot | **Passed:** selected the test entry, kernel loaded the matching corrected DSDT |
+| Exact public-builder output hardware boot | **Not yet tested** |
+| Initial battery and AC reporting | **Observed:** battery present at 97%, adapter online; deeper accuracy and transition checks pending |
+| Charging transitions and suspend/resume | **Not yet tested** |
 | Long-term recurrence prevention | **Not established** |
 
 The emulation covers query type, cache flags, cached/reported presence, region availability, notification enablement, large/zero power values and optional external methods present/absent. EC fields are emulated and external consumers are stubs. Unchanged helper methods and both corrected query methods match the real table bytes in that execution harness.
 
 Earlier host-specific packaging tests additionally ran Linux 7.2.14's early CPIO scanner in userspace against the real initramfs layout and verified existing early firmware access. Those tests do not constitute a boot test of the public builder's output or a test of every bootloader.
+
+## First physical boot (2026-11-16)
+
+The Dragonfly booted the separate host-specific override. The active DSDT hash matched that artifact and the kernel reported a physical table override. Battery presence and AC online were readable, UPower and logind were active, and no ACPI errors or hung-task warnings appeared in the first minute. The sysfs battery reported 97% and “Not charging”; UPower reported fully charged. This is an initial reading, not a charging-transition or accuracy test.
+
+The host-specific `_Q08` uses `Local0`; the public builder uses a previously unused `Local1` on this firmware. Their table bytes and hashes differ. The successful boot therefore does not validate the public builder’s exact output on hardware.
 
 ## Remaining limits
 
